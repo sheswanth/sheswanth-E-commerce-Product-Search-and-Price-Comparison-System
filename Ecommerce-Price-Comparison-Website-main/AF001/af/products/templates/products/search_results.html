@@ -1,0 +1,28 @@
+{% extends "core/base.html" %}
+{% block content %}
+<div class="container my-3">
+    <h1 class="my-4 text-center">Search Results for "{{ search_query }}"</h1>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for product in products %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <!-- Display property details here -->
+                    <img src="{{ product.product_images.url }}" alt="img home" height="300px">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ product.product_title }} #{{product.id}}</h2>
+                        <p class="card-text">{{ product.product_description }}</p>
+                          <p>Amazon Price: ${{ product.amazon_price }}</p>
+                        <p>Amazon product link: <a href="{{ product.amazon_link }}" target="_blank">click here</a></p>
+                          <p>Flipkart Price: ${{ product.flipkart_price }}</p>
+                        <p>Flipkart product link: <a href="{{ product.flipkart_link }}" target="_blank">click here</a></p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col">
+                <p style="text-align: center;">No products match your search criteria.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
